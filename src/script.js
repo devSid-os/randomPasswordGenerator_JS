@@ -10,8 +10,13 @@ const smallLettersCheck = document.getElementById("smallLetters");
 const numbersCheck = document.getElementById("numbers");
 const symbolsCheck = document.getElementById("symbols");
 const copyBtn = document.getElementById("copyBtn");
+const copyText = document.getElementById("copyText");
 
 setPasswordLengthIndicator();
+generateRandomPassword();
+
+var startInterval = setInterval(generateRandomPassword, 60);
+setTimeout(() => clearInterval(startInterval), 800);
 
 function setPasswordLengthIndicator() {
     if (parseInt(passwordRange.value) < 8) {
@@ -32,14 +37,12 @@ function setPasswordLengthIndicator() {
     }
 }
 
-generateRandomPassword();
-
 function generateRandomPassword() {
     var passwordString = "";
     const CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const SMALLS = 'abcdefghijklmnopqrstuvwxyz'.split('');
     const NUMBERS = '0123456789'.split('');
-    const SYMBOLS = '~!#$%^&*()_+=`-|/?.<,>[}{]'.split('');
+    const SYMBOLS = '~!#$%^&*+=-|/?[}{]'.split('');
     var tempArr = [];
     var tempArr2 = [];
     if (capitalLettersCheck.checked) tempArr.push(0);
@@ -159,5 +162,7 @@ symbolsCheck.addEventListener("click", (e) => {
 });
 copyBtn.addEventListener("click", function () {
     navigator.clipboard.writeText(randomPasswordInput.value);
+    copyText.classList.remove("hidden");
+    setTimeout(() => copyText.classList.add("hidden"),2000);
 });
 refreshBtn.addEventListener("click", generateRandomPassword);
