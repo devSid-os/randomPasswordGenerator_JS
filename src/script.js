@@ -34,10 +34,6 @@ function setPasswordLengthIndicator() {
 
 generateRandomPassword();
 
-function addRandomCharacter() {
-
-}
-
 function generateRandomPassword() {
     var passwordString = "";
     const CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -45,21 +41,35 @@ function generateRandomPassword() {
     const NUMBERS = '0123456789'.split('');
     const SYMBOLS = '~!#$%^&*()_+=`-|/?.<,>[}{]'.split('');
     var tempArr = [];
-    if (capitalLettersCheck.checked) {
-        passwordString += CAPITALS[Math.floor(Math.random() * CAPITALS.length)];
-        tempArr.push(0);
+    var tempArr2 = [];
+    if (capitalLettersCheck.checked) tempArr.push(0);
+    if (smallLettersCheck.checked) tempArr.push(1);
+    if (numbersCheck.checked) tempArr.push(2);
+    if (symbolsCheck.checked) tempArr.push(3);
+
+    tempArr.map(num => tempArr2.push(num));
+    for (var i = 0; i < tempArr2.length; ++i) {
+        var randomIndex = Math.floor(Math.random() * tempArr2.length);
+        var temp = tempArr2[randomIndex];
+        tempArr2[randomIndex] = tempArr2[i];
+        tempArr2[i] = temp;
     }
-    if (smallLettersCheck.checked) {
-        passwordString += SMALLS[Math.floor(Math.random() * SMALLS.length)];
-        tempArr.push(1);
-    }
-    if (numbersCheck.checked) {
-        passwordString += NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
-        tempArr.push(2);
-    }
-    if (symbolsCheck.checked) {
-        passwordString += SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        tempArr.push(3);
+
+    for (var i = 0; i < tempArr2.length; ++i) {
+        switch (tempArr2[i]) {
+            case 0:
+                passwordString += CAPITALS[Math.floor(Math.random() * CAPITALS.length)];
+                break;
+            case 1:
+                passwordString += SMALLS[Math.floor(Math.random() * SMALLS.length)];
+                break;
+            case 2:
+                passwordString += NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+                break;
+            case 3:
+                passwordString += SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                break;
+        }
     }
 
     while (passwordString.length != (parseInt(passwordRange.value))) {
