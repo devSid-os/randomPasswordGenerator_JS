@@ -9,6 +9,7 @@ const capitalLettersCheck = document.getElementById("capitalLetters");
 const smallLettersCheck = document.getElementById("smallLetters");
 const numbersCheck = document.getElementById("numbers");
 const symbolsCheck = document.getElementById("symbols");
+const copyBtn = document.getElementById("copyBtn");
 
 setPasswordLengthIndicator();
 
@@ -29,7 +30,55 @@ function setPasswordLengthIndicator() {
         passwordLengthIndicator.textContent = "Very Strong";
         passwordLengthIndicator.style = "background-color: #9ae437";
     }
+}
 
+generateRandomPassword();
+
+function addRandomCharacter() {
+
+}
+
+function generateRandomPassword() {
+    var passwordString = "";
+    const CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const SMALLS = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const NUMBERS = '0123456789'.split('');
+    const SYMBOLS = '~!#$%^&*()_+=`-|/?.<,>[}{]'.split('');
+    var tempArr = [];
+    if (capitalLettersCheck.checked) {
+        passwordString += CAPITALS[Math.floor(Math.random() * CAPITALS.length)];
+        tempArr.push(0);
+    }
+    if (smallLettersCheck.checked) {
+        passwordString += SMALLS[Math.floor(Math.random() * SMALLS.length)];
+        tempArr.push(1);
+    }
+    if (numbersCheck.checked) {
+        passwordString += NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+        tempArr.push(2);
+    }
+    if (symbolsCheck.checked) {
+        passwordString += SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+        tempArr.push(3);
+    }
+
+    while (passwordString.length != (parseInt(passwordRange.value))) {
+        switch (tempArr[Math.floor(Math.random() * tempArr.length)]) {
+            case 0:
+                passwordString += CAPITALS[Math.floor(Math.random() * CAPITALS.length)];
+                break;
+            case 1:
+                passwordString += SMALLS[Math.floor(Math.random() * SMALLS.length)];
+                break;
+            case 2:
+                passwordString += NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+                break;
+            case 3:
+                passwordString += SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                break;
+        }
+    }
+    randomPasswordInput.value = passwordString;
 }
 
 function validateCheckBoxes(checkBox) {
@@ -51,39 +100,54 @@ function validateCheckBoxes(checkBox) {
 }
 
 minusBtn.addEventListener("click", function () {
-    if (passwordRange.value > 4)
+    if (passwordRange.value > 4) {
         passwordRange.value--;
-    passwordLength.textContent = passwordRange.value;
-    setPasswordLengthIndicator();
+        passwordLength.textContent = passwordRange.value;
+        setPasswordLengthIndicator();
+        generateRandomPassword();
+    }
 });
+
 plusBtn.addEventListener("click", function () {
-    passwordRange.value++;
-    passwordLength.textContent = passwordRange.value;
-    setPasswordLengthIndicator();
+    if (passwordRange.value < 50) {
+        passwordRange.value++;
+        passwordLength.textContent = passwordRange.value;
+        setPasswordLengthIndicator();
+        generateRandomPassword();
+    }
 });
 
 passwordRange.addEventListener("change", function () {
     passwordLength.textContent = passwordRange.value;
     setPasswordLengthIndicator();
+    generateRandomPassword();
 });
 
 capitalLettersCheck.addEventListener("click", (e) => {
     if (!validateCheckBoxes('capital')) {
         e.target.checked = true;
     }
+    else generateRandomPassword();
 });
 smallLettersCheck.addEventListener("click", (e) => {
     if (!validateCheckBoxes('small')) {
         e.target.checked = true;
     }
+    else generateRandomPassword();
 });
 numbersCheck.addEventListener("click", (e) => {
     if (!validateCheckBoxes('number')) {
         e.target.checked = true;
     }
+    else generateRandomPassword();
 });
 symbolsCheck.addEventListener("click", (e) => {
     if (!validateCheckBoxes('symbol')) {
         e.target.checked = true;
     }
+    else generateRandomPassword();
 });
+copyBtn.addEventListener("click", function () {
+    navigator.clipboard.writeText(randomPasswordInput.value);
+});
+refreshBtn.addEventListener("click", generateRandomPassword);

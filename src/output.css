@@ -844,6 +844,22 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[8px\] {
+  font-size: 8px;
+}
+
+.text-\[5px\] {
+  font-size: 5px;
+}
+
+.text-\[6px\] {
+  font-size: 6px;
+}
+
+.text-\[7px\] {
+  font-size: 7px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -924,5 +940,9 @@ video {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[10px\] {
+    font-size: 10px;
   }
 }

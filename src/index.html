@@ -20,8 +20,9 @@
                     <input type="text" value="LQ)71jahs2jd"
                         class="flex-1 text-sm md:text-xl font-light bg-transparent tracking-wider"
                         id="randomPasswordInput" disabled>
-                    <label id="passwordLengthIndicator" class="rounded-md text-[10px] font-bold p-2">Very
+                    <label id="passwordLengthIndicator" class="rounded-md text-[7px] md:text-[10px] font-bold p-2">Very
                         Strong</label>
+                    <button type="button" class="fa fa-copy" id="copyBtn"></button>
                     <button type="button" class="fa fa-refresh" id="refreshBtn"></button>
                 </div>
             </div>
@@ -41,19 +42,19 @@
                 <div class="w-[90%] flex-1 flex justify-between items-center">
                     <div class="flex items-center gap-2">
                         <input checked type="checkbox" id="capitalLetters">
-                        <label for="capitalLetters">ABC</label>
+                        <label class="select-none" for="capitalLetters">ABC</label>
                     </div>
                     <div class="flex items-center gap-2">
                         <input checked type="checkbox" id="smallLetters">
-                        <label for="smallLetters">abc</label>
+                        <label class="select-none" for="smallLetters">abc</label>
                     </div>
                     <div class="flex items-center gap-2">
                         <input checked type="checkbox" id="numbers">
-                        <label for="numbers">123</label>
+                        <label class="select-none" for="numbers">123</label>
                     </div>
                     <div class="flex items-center gap-2">
                         <input type="checkbox" id="symbols">
-                        <label for="symbols">&%#</label>
+                        <label class="select-none" for="symbols">&%#</label>
                     </div>
                 </div>
             </div>
