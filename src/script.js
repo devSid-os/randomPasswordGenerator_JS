@@ -10,3 +10,13 @@ const smallLettersCheck = document.getElementById("smallLetters");
 const numbersCheck = document.getElementById("numbers");
 const symbolsCheck = document.getElementById("symbols");
 
+minusBtn.addEventListener("click", function() {
+    if (passwordRange.value>8)
+        passwordRange.value--;
+    passwordLength.textContent = passwordRange.value;
+});
+plusBtn.addEventListener("click", function() {
+    passwordRange.value++;
+    passwordLength.textContent = passwordRange.value;
+});
+

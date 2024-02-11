@@ -29,7 +29,7 @@
                     <span id="passwordLength">16</span></label>
                 <div class="w-full flex-1 flex flex-col gap-4 justify-between items-center md:flex-row">
                     <button class="rounded-full fa fa-minus border-[1px] border-[darkblue] p-2" type="button" id="minusBtn"></button>
-                    <input id="passwordRange" min="8" max="50" value="16" type="range" class="w-[90%] md:w-[60%]">
+                    <input id="passwordRange" min="0" max="50" value="16" type="range" class="w-[90%] md:w-[60%]">
                     <button class="rounded-full fa fa-plus border-[1px] border-[darkblue] p-2" type="button" id="plusBtn"></button>
                 </div>
             </div>
@@ -37,15 +37,15 @@
                 <label class="flex-1 font-light tracking-wider text-lg md:text-xl">Characters used &nbsp;: </label>
                 <div class="w-[90%] flex-1 flex justify-between items-center">
                     <div class="flex items-center gap-2">
-                        <input type="checkbox" id="capitalLetters">
+                        <input checked type="checkbox" id="capitalLetters">
                         <label for="capitalLetters">ABC</label>
                     </div>
                     <div class="flex items-center gap-2">
-                        <input type="checkbox" id="smallLetters">
+                        <input checked type="checkbox" id="smallLetters">
                         <label for="smallLetters">abc</label>
                     </div>
                     <div class="flex items-center gap-2">
-                        <input type="checkbox" id="numbers">
+                        <input checked type="checkbox" id="numbers">
                         <label for="numbers">123</label>
                     </div>
                     <div class="flex items-center gap-2">
