@@ -32,6 +32,24 @@ function setPasswordLengthIndicator() {
 
 }
 
+function validateCheckBoxes(checkBox) {
+    switch (checkBox) {
+        case 'capital':
+            if (!smallLettersCheck.checked && !numbersCheck.checked && !symbolsCheck.checked) return false;
+            break;
+        case 'small':
+            if (!capitalLettersCheck.checked && !numbersCheck.checked && !symbolsCheck.checked) return false;
+            break;
+        case 'number':
+            if (!capitalLettersCheck.checked && !smallLettersCheck.checked && !symbolsCheck.checked) return false;
+            break;
+        case 'symbol':
+            if (!capitalLettersCheck.checked && !smallLettersCheck.checked && !numbersCheck.checked) return false;
+            break;
+    }
+    return true;
+}
+
 minusBtn.addEventListener("click", function () {
     if (passwordRange.value > 4)
         passwordRange.value--;
@@ -44,3 +62,28 @@ plusBtn.addEventListener("click", function () {
     setPasswordLengthIndicator();
 });
 
+passwordRange.addEventListener("change", function () {
+    passwordLength.textContent = passwordRange.value;
+    setPasswordLengthIndicator();
+});
+
+capitalLettersCheck.addEventListener("click", (e) => {
+    if (!validateCheckBoxes('capital')) {
+        e.target.checked = true;
+    }
+});
+smallLettersCheck.addEventListener("click", (e) => {
+    if (!validateCheckBoxes('small')) {
+        e.target.checked = true;
+    }
+});
+numbersCheck.addEventListener("click", (e) => {
+    if (!validateCheckBoxes('number')) {
+        e.target.checked = true;
+    }
+});
+symbolsCheck.addEventListener("click", (e) => {
+    if (!validateCheckBoxes('symbol')) {
+        e.target.checked = true;
+    }
+});
